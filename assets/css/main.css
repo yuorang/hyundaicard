@@ -63,6 +63,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
+
 }
 
 #section01 .start-animation .animation-card {
@@ -212,7 +213,7 @@
 }
 
 #section01 .br-name {
-    font-size: 3vw;
+    font-size: 40px;
     white-space: nowrap;
     overflow: hidden;
 }
@@ -383,91 +384,72 @@
 }
 
 /* 애플페이 */
+/* 배경색 전이 효과 */
+.pay-animation {
+    transition: background-color 0.8s ease;
+}
 
+.pay-animation.bg {
+    background-color: #007aff !important;
+}
+
+#section02 .pay-animation {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 100px;
+}
 
 #section02 .pay-animation svg {
     width: 500px;
     height: auto;
-    margin: 0 auto 100px;
+    margin: 0;
 }
 
 #section02 .payment-visual {
     position: relative;
 
-    width: 500px;
-    height: 100vh;
+    width: 550px;
+    height: 600px;
     margin: 0 auto;
-    /* display: flex;
-    justify-content: center;
-    gap: 50px; */
 }
 
 #section02 .payment-visual__container {
-    /* position: relative; */
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px;
-    /* border: 1px solid #000; */
+    inset: 0;
 }
 
-#section02 .payment-visual__card {
-    width: 150px;
-    /* transform: rotate(90deg); */
-    transform-origin: 50% 50%;
+.payment-visual__card {
     position: absolute;
-    left: 24%;
-
-    transform-style: preserve-3d;
-    perspective: 1000px;
+    bottom: 0;
+    height: auto;
+    z-index: 2;
+    top: 90px;
+    left: 22%;
     opacity: 0;
 }
 
+.card-front-asset {
+    transform: rotate(90deg);
+    width: 250px;
+}
 
-#section02 .payment-visual__card img {
+#section02 .payment-visual__device {
     position: absolute;
-    top: 0;
-    left: 0;
+    /* inset: 0; */
+    bottom: -10px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.phone-asset {
+    max-width: 100%;
     width: 100%;
-    height: auto;
-
-    backface-visibility: hidden;
 }
-
-/* 카드 앞면 */
-#section02 .card-front-asset {
-    transform: rotateY(180deg);
-}
-
-/* 카드 뒷면 (기본) */
-#section02 .card-back-asset {
-    transform: rotateY(0deg);
-}
-
-#section02 .payment-visual__container:first-child .payment-visual__card {
-    top: -40%;
-}
-
-#section02 .payment-visual__container:nth-child(2) .payment-visual__card {
-    top: -20%;
-}
-
-#section02 .payment-visual__container:nth-child(3) .payment-visual__card {
-    top: 5%;
-}
-
-#section02 .payment-visual__container:nth-child(4) .payment-visual__card {
-    top: -20%;
-}
-
-#section02 .payment-visual__container:last-child .payment-visual__card {
-    top: -40%;
-}
-
-
-
 
 
 /* 섹션 04 */
@@ -546,6 +528,7 @@
     font-size: 150px;
     text-align: center;
     overflow: hidden;
+    white-space: nowrap;
 }
 
 #section04 .pos-wrap .title span {
@@ -604,22 +587,23 @@
 
     color: rgb(111 141 181);
     background-color: #000;
+    overflow: hidden;
 }
 
 #section04 .display-large .layer:nth-child(1) {
-    font-size: 33vw;
+    font-size: 500px;
     transform: translate(-50%, 0);
     z-index: 3;
 }
 
 #section04 .display-large .layer:nth-child(2) {
-    font-size: 32vw;
+    font-size: 480px;
     transform: translate(-50%, 10%);
     z-index: 2;
 }
 
 #section04 .display-large .layer:nth-child(3) {
-    font-size: 31vw;
+    font-size: 460px;
     transform: translate(-50%, 20%);
     z-index: 1;
 }
@@ -657,18 +641,14 @@
     justify-content: center;
 
     text-align: center;
-    /* padding: 100px 0 200px; */
     padding-bottom: 200px;
-    /* border: 5px solid red; */
 }
 
 .zero-title .zero-txt {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     margin-bottom: 80px;
-
     /* border: 5px solid blue; */
 }
 
@@ -810,26 +790,23 @@
 
 .wheel-list {
     position: absolute;
-    top: 40%;
-    left: -30%;
-    transform-origin: 50% 50%;
-
-    width: 150vw;
-    height: 150vw;
+    left: 50%;
+    top: 200px;
+    width: 2100px;
+    height: 2100px;
 
     max-width: 3000px;
     max-height: 3000px;
+    margin-left: -1050px;
 
-    /* border: 10px solid red; */
+    transform-origin: center center;
+    border-radius: 50%;
 }
 
 .wheel-item {
     position: absolute;
     inset: 0;
-
-    width: 7vw;
-    /* background-color: #fff; */
+    width: 150px;
     aspect-ratio: 3/4;
-
     backface-visibility: hidden;
 }

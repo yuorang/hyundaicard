@@ -100,7 +100,7 @@ $(function () {
     // 나머지 카드들 퍼지며 정렬
     intro.to(".card-stage .flex-card_item:not(:nth-child(3))", { opacity: 1, scale: 1.3 }, "oneCard+=0.6");
     intro.to(".flex-card_item", {
-        x: (i) => (i - 2) * 20 + "vw", // 중앙 기준 좌우 대칭 이동
+        x: (i) => (i - 2) * 300 + "px", // 중앙 기준 좌우 대칭 이동
         y: 100,
         duration: 1
     }, "oneCard+=0.6");
@@ -127,7 +127,7 @@ $(function () {
         }, "after");
 
     intro.to(".br-wrap:nth-child(2) .br-name", {
-        fontSize: "10vw"
+        fontSize: "150px"
     }, "after");
 
     intro.to(".br-wrap:nth-child(3)", {
@@ -179,86 +179,128 @@ $(function () {
     },);
 
 
+
+
+
+
+
+
     /**
      * 06. Section 02 & 03 애니메이션
      */
-    let sect02 = gsap.timeline({
-        scrollTrigger: { trigger: '#section02', start: "0% 50%", end: "100% 100%" }
-    });
-    sect02.to("#section02 .about-paragraph, #section02 .about-headline span, #section02 .about-hidden", {
-        y: 0, opacity: 1, stagger: 0.1
-    });
-
-    const containers = document.querySelectorAll(
-        "#section02 .payment-visual__container"
-    );
-
-    // 🔧 여기만 조절하면 됨
-    const STEP = Math.min(window.innerWidth * 0.22, 320);
-
-    gsap.set(containers, (i) => ({
-        x: 0,
-        opacity: i === 2 ? 1 : 0,
-        scale: i === 2 ? 1.05 : 0.95
-    }));
-
-    const tl = gsap.timeline({
+    // 1. 텍스트 애니메이션 (기존 트리거 유지)
+    gsap.to("#section02 .about-paragraph, #section02 .about-headline span, #section02 .about-hidden", {
         scrollTrigger: {
-            trigger: "#section02 .payment-visual",
-            start: "top top",
-            end: "+=3000",
-            scrub: true,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-            // markers: true
+            trigger: '#section02',
+            start: "0% 50%",
+            end: "30% 50%",
+            scrub: 1
+        },
+        y: 0,
+        opacity: 1,
+        stagger: 0.1
+    });
+    // 1. 배경색 변경 (진입하자마자 실행)
+    ScrollTrigger.create({
+        trigger: '.pay-animation',
+        start: "top 70%", // 요소 상단이 화면 70% 지점에 오면 배경 변경
+        onEnter: () => document.querySelector('.pay-animation').classList.add('bg'),
+        onLeaveBack: () => document.querySelector('.pay-animation').classList.remove('bg'),
+    });
+
+    // 2. 고정(Pin) 및 카드 등장 애니메이션
+    let payTimeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: '.pay-animation',
+            start: "top top",      // 요소 상단이 화면 꼭대기에 닿으면 고정 시작
+            end: "+=1000",         // 1000px만큼 스크롤하는 동안 고정 유지
+            pin: true,             // 화면 고정!
+            scrub: 1,              // 스크롤 속도에 맞춰 카드 등장
+            markers: false          // 위치 확인용 (완료 후 false)
         }
     });
 
-    tl.to(containers, {
-        x: (i) => {
-            if (i === 2) return 0;
-            return (i - 2) * STEP;
-        },
+    // 배경이 고정된 후 카드가 나타남
+    payTimeline.to(".payment-visual__card", {
         opacity: 1,
-        duration: 6,
-        rotationY: (i) => (i - 2) * 6,
-        ease: "power3.out"
-    }, "+=1");
 
-    /* ① 카드 나타남 */
-    tl.to(".payment-visual__card", {
-        opacity: 1,
-        duration: 3,
-    }, "+=1");
-
-    /* ② 카드 플립 (앞면 공개) */
-    tl.to(".payment-visual__card", {
-        rotationY: 180,
-        duration: 3,
-        ease: "power2.inOut",
-    }, 'a');
-
-    /* ③ 카드 90도로 세워짐 */
-    tl.to(".payment-visual__card", {
-        rotation: 90,
-        duration: 3,
-        transformOrigin: "center center",
-        xPercent: 80,
-        // yPercent: -50,
-        ease: "power2.in"
-    }, 'b');
-
-    /* ④ 아래로 내려가면서 퇴장 */
-    const moveTopMap = ["+=65%", "+=45%", "+=20%", "+=45%", "+=65%"];
-
-    tl.to(".payment-visual__card", {
-        top: (i) => moveTopMap[i],
-        // rotation: 90,
-        duration: 10,
-        ease: "power3.in"
+        duration: 2,
+        ease: "power2.out"
     });
-    tl.to({}, { duration: 5 });
+
+    // 카드 등장 후 잠시 멈춰있는 여유 시간 (필요시 추가)
+    payTimeline.to({}, { duration: 0.5 });
+
+    // const containers = document.querySelectorAll(
+    //     "#section02 .payment-visual__container"
+    // );
+
+    // // 🔧 여기만 조절하면 됨
+    // const STEP = Math.min(window.innerWidth * 0.22, 320);
+
+    // gsap.set(containers, (i) => ({
+    //     x: 0,
+    //     opacity: i === 2 ? 1 : 0,
+    //     scale: i === 2 ? 1.05 : 0.95
+    // }));
+
+    // const tl = gsap.timeline({
+    //     scrollTrigger: {
+    //         trigger: "#section02 .payment-visual",
+    //         start: "top top",
+    //         end: "+=3000",
+    //         scrub: true,
+    //         pin: true,
+    //         anticipatePin: 1,
+    //         invalidateOnRefresh: true,
+    //         // markers: true
+    //     }
+    // });
+
+    // tl.to(containers, {
+    //     x: (i) => {
+    //         if (i === 2) return 0;
+    //         return (i - 2) * STEP;
+    //     },
+    //     opacity: 1,
+    //     duration: 6,
+    //     rotationY: (i) => (i - 2) * 6,
+    //     ease: "power3.out"
+    // }, "+=1");
+
+    // /* ① 카드 나타남 */
+    // tl.to(".payment-visual__card", {
+    //     opacity: 1,
+    //     duration: 3,
+    // }, "+=1");
+
+    // /* ② 카드 플립 (앞면 공개) */
+    // tl.to(".payment-visual__card", {
+    //     rotationY: 180,
+    //     duration: 3,
+    //     ease: "power2.inOut",
+    // }, 'a');
+
+    // /* ③ 카드 90도로 세워짐 */
+    // tl.to(".payment-visual__card", {
+    //     rotation: 90,
+    //     duration: 3,
+    //     transformOrigin: "center center",
+    //     xPercent: 80,
+    //     // yPercent: -50,
+    //     ease: "power2.in"
+    // }, 'b');
+
+    // /* ④ 아래로 내려가면서 퇴장 */
+    // const moveTopMap = ["+=65%", "+=45%", "+=20%", "+=45%", "+=65%"];
+
+    // tl.to(".payment-visual__card", {
+    //     top: (i) => moveTopMap[i],
+    //     // rotation: 90,
+    //     duration: 10,
+    //     ease: "power3.in"
+    // });
+    // tl.to({}, { duration: 5 });
 
 
 
