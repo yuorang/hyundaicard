@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <rect id="path-1" x="0" y="0" width="20" height="20" rx="5"></rect>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="the-Red-Stripe-Copy-38" transform="translate(-394.000000, -2955.000000)">
+            <g id="Group-6" transform="translate(349.000000, 1049.000000)">
+                <g id="Group-3" transform="translate(13.000000, 1715.000000)">
+                    <g id="Group-5" transform="translate(0.000000, 140.000000)">
+                        <g id="Notification-Copy-3" transform="translate(32.000000, 51.000000)">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <rect stroke="#979797" stroke-width="1.25" x="0.625" y="0.625" width="18.75" height="18.75" rx="5"></rect>
+                            <g id="Notification-Copy-2" mask="url(#mask-2)">
+                                <rect id="Rectangle" fill="#000000" x="0" y="0" width="20" height="20"></rect>
+                                <path d="M3.8,12 L3.8,9.9 C3.8,9.0163444 4.5163444,8.3 5.4,8.3 L14.6,8.3 C15.4836556,8.3 16.2,9.0163444 16.2,9.9 L16.2,12" id="Path" stroke="#FFFFFF" stroke-width="1.6"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
