@@ -1,41 +1,36 @@
+/* 섹션 01 */
 #section01 {
     position: relative;
     background-color: #000;
     color: #fff;
-
-    /* z-index: 10; */
 }
 
-#section01 .start-animation {
+/* 애니메이션 스테이지 공통 */
+#section01 .start-animation,
+#section01 .card-stage,
+#section01 .after-intro {
     position: relative;
-    top: 0;
-
     width: 100%;
     height: 100vh;
 }
 
-/*  레이아웃 라인 */
-#section01 .layout-guide {
+/* 레이아웃 가이드 라인 */
+#section01 .layout-guide,
+#section01 .layout-guide .line-wrapper {
     position: absolute;
     inset: 0;
-
     width: 100%;
     height: 100%;
+}
 
+#section01 .layout-guide {
     z-index: 0;
 }
 
 #section01 .layout-guide .line-wrapper {
-    position: absolute;
-    inset: 0;
     z-index: 1;
-
-    width: 100%;
-    height: 100%;
-
     display: flex;
     justify-content: space-between;
-
     padding: 0 15px;
     pointer-events: none;
 }
@@ -43,47 +38,32 @@
 #section01 .layout-guide .line {
     width: 20px;
     height: 100%;
-
-    border-color: #ffffff;
     border-style: solid;
+    border-color: #ffffff;
     border-width: 0 0.1px;
-
     opacity: 0.1;
 }
 
-
-/* intro 카드 */
-#section01 .card-stage {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-}
-
+/* 인트로 카드 애니메이션 */
 #section01 .start-animation .animation-card_wrap {
     position: absolute;
-    width: 100%;
-    height: 100%;
-
+    inset: 0;
 }
 
 #section01 .start-animation .animation-card {
     position: absolute;
     top: 50%;
     left: 50%;
-
     width: 100px;
-    /* height: 140px; */
     aspect-ratio: 3/4;
-
     transform-origin: center center;
-
-    /* border: 1px solid #000; */
 }
 
 #section01 .start-animation .animation-card img {
     width: 100%;
 }
 
+/* 카드 개별 회정 각도 및 초기 애니메이션 값 */
 #section01 .start-animation .animation-card:nth-child(1) {
     transform: translate(-50%, -50%) rotate(0deg) translateY(-200px) scale(var(--s, 0));
     opacity: 1;
@@ -117,14 +97,12 @@
     transform: translate(-50%, -50%) rotate(315deg) translateY(-200px) scale(var(--s, 0));
 }
 
+/* 카드 스테이지 */
 #section01 .card-stage .flex-card_list {
     position: absolute;
     inset: 0;
-    height: 100%;
     padding: 0 35px;
     opacity: 0;
-
-    /* border: 5px solid green; */
 }
 
 #section01 .card-stage .flex-card_item {
@@ -132,15 +110,16 @@
     left: 50%;
     top: calc(50% - 200px);
     transform: translate(-50%, -50%);
-
     perspective: 1200px;
     z-index: 1;
 }
 
 #section01 .flex-card_scale {
     will-change: transform;
+    transform-origin: center;
 }
 
+/* 활성 카드 제어 */
 #section01 .card-stage .flex-card_item:not(:nth-child(3)) {
     opacity: 0;
 }
@@ -149,66 +128,45 @@
     z-index: 50;
 }
 
-#section01 .card-stage .flex-card_scale {
-    transform-origin: center;
-}
-
+/* 카드 3D 회전 구조 */
 #section01 .card-stage .flex-card {
     position: relative;
-
     width: 100px;
     height: 140px;
-
     transform-style: preserve-3d;
 }
 
 #section01 .card-stage .card-front,
 #section01 .card-stage .card-back {
-    /* 카드 앞뒷면 */
     position: absolute;
     inset: 0;
-
     backface-visibility: hidden;
 }
 
 #section01 .card-stage .card-front {
-    position: absolute;
-    inset: 0;
     transform: rotateY(0deg);
-
-    backface-visibility: hidden;
     z-index: 2;
 }
 
 #section01 .card-stage .card-back {
-    position: absolute;
-    inset: 0;
     transform: rotateY(180deg);
-
-    backface-visibility: hidden;
     z-index: 1;
 }
 
-/* 섹션01 텍스트 부분 */
+/* 하단 텍스트 및 타이틀 영역 */
 #section01 .br-area {
     position: absolute;
     bottom: 0;
-
     width: 100%;
-
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-
     padding: 20px 30px;
-
-    /* border: 5px solid #fff; */
 }
 
 #section01 .br-wrap {
     display: flex;
     align-items: flex-end;
-
     overflow: hidden;
 }
 
@@ -218,93 +176,70 @@
     overflow: hidden;
 }
 
+/* 인트로 이후 등장하는 텍스트 영역 */
 #section01 .after-intro {
     position: absolute;
-    left: 0;
-    top: 0;
-
-    width: 100%;
-    height: 100vh;
-
+    inset: 0;
     padding: 80px 0 250px 0;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-#section01 .after-intro .top-wrap {
+#section01 .after-intro .top-wrap,
+#section01 .after-intro .sub-wrap {
     overflow: hidden;
 }
 
 #section01 .after-intro .intro-top_title {
     transform: translateY(100%);
-
     text-align: center;
     font-size: 40px;
     line-height: 46px;
     letter-spacing: -2px;
 }
 
-#section01 .after-intro .sub-wrap {
-    overflow: hidden;
-}
-
 #section01 .after-intro .intro-sub_title {
     transform: translateY(100%);
-
     text-align: center;
     font-size: 20px;
     font-weight: 500;
 }
 
-/* section02 */
+/* 섹션 02 */
 #section02 {
     position: sticky;
-
     width: 100%;
     height: auto;
-
-    /* padding: 200px 0 240px; */
     padding-top: 300px;
     background-color: #fff;
-
     overflow: hidden;
     z-index: 1;
-
-    /* border: 5px solid red; */
 }
 
 /* 레이아웃 가이드 */
-#section02 .layout-guide {
+#section02 .layout-guide,
+#section02 .layout-guide .line-wrapper {
     position: absolute;
     inset: 0;
-    z-index: 1;
-
     width: 100%;
     height: 100%;
 }
 
-#section02 .layout-guide .line-wrapper {
-    position: absolute;
-    left: 0;
-    top: 0;
+#section02 .layout-guide {
+    z-index: 1;
+}
 
+#section02 .layout-guide .line-wrapper {
     display: flex;
     justify-content: space-between;
-
-    width: 100%;
-    height: 100%;
-
     padding: 0 15px;
 }
 
 #section02 .layout-guide .line {
     width: 20px;
     height: 100%;
-
     opacity: 0.1;
-
     border-color: #000;
     border-style: solid;
     border-width: 0 0.1px;
@@ -321,10 +256,7 @@
     grid-template-columns: repeat(12, minmax(0, 1fr));
     column-gap: 19px;
     align-items: start;
-
     padding: 0 34px;
-
-    /* border: 1px solid #000; */
 }
 
 #section02 .about-container .grid-box {
@@ -333,21 +265,17 @@
     overflow: hidden;
 }
 
-
-
 #section02 .about-container .about-paragraph {
     font-size: 24px;
     font-weight: 600;
-
     transform: translateY(100%);
     opacity: 0;
 }
 
+/* 텍스트 헤드라인 영역 */
 #section02 .about-middle {
     margin-bottom: 100px;
     overflow: hidden;
-
-    /* border: 3px solid blue; */
 }
 
 #section02 .about-headline {
@@ -367,23 +295,17 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
-
     padding: 20px 0;
     margin-bottom: 100px;
-
     overflow: hidden;
-
-    /* border: 1px solid #000; */
 }
 
 #section02 .about-hidden {
     font-size: 20px;
     font-weight: 600;
-
     transform: translateY(100%);
 }
 
-/* 애플페이 */
 /* 배경색 전이 효과 */
 .pay-animation {
     transition: background-color 0.8s ease;
@@ -393,6 +315,7 @@
     background-color: #007aff !important;
 }
 
+/* 애플페이 애니메이션 섹션 */
 #section02 .pay-animation {
     height: 100vh;
     display: flex;
@@ -408,9 +331,9 @@
     margin: 0;
 }
 
+/* 비주얼 요소 및 카드 기기 레이아웃 */
 #section02 .payment-visual {
     position: relative;
-
     width: 550px;
     height: 600px;
     margin: 0 auto;
@@ -424,10 +347,10 @@
 .payment-visual__card {
     position: absolute;
     bottom: 0;
-    height: auto;
-    z-index: 2;
     top: 90px;
     left: 22%;
+    z-index: 2;
+    height: auto;
     opacity: 0;
 }
 
@@ -438,7 +361,6 @@
 
 #section02 .payment-visual__device {
     position: absolute;
-    /* inset: 0; */
     bottom: -10px;
     z-index: 1;
     display: flex;
@@ -456,31 +378,23 @@
 #section04 {
     position: relative;
     padding: 100px 35px;
-
     background-color: #000;
     color: #fff;
-
-    /* border: 5px solid #fff; */
 }
 
 /* 레이아웃 가이드 */
-#section04 .layout-guide {
+#section04 .layout-guide,
+#section04 .layout-guide .line-wrapper {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
 }
 
 #section04 .layout-guide .line-wrapper {
-    padding: 0 15px;
     display: flex;
     justify-content: space-between;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    padding: 0 15px;
 }
 
 #section04 .layout-guide .line {
@@ -492,7 +406,7 @@
     border-width: 0 0.1px;
 }
 
-/* 섹션04 내부 컨텐츠 */
+/* 알파벳 섹션 레이아웃 */
 #section04 .alphabet-area {
     margin-bottom: 100px;
 }
@@ -500,16 +414,12 @@
 #section04 .alphabet-area .pos-wrap {
     position: relative;
     padding-bottom: 100px;
-
-    /* border: 1px solid #fff; */
 }
 
-/* alphabet */
 #section04 .alphabet-area .alphabet-flexitem {
     display: flex;
     flex-direction: column;
     gap: 500px;
-
     padding-top: 30px;
 }
 
@@ -518,13 +428,12 @@
     justify-content: space-between;
 }
 
+/* 알파벳 타이틀 및 중앙 카드 */
 #section04 .pos-wrap .title {
     position: absolute;
     top: 5%;
-
     width: 100%;
     height: auto;
-
     font-size: 150px;
     text-align: center;
     overflow: hidden;
@@ -532,6 +441,7 @@
 }
 
 #section04 .pos-wrap .title span {
+    display: inline-block;
     transform: translateY(100%);
     opacity: 0;
 }
@@ -550,11 +460,10 @@
     left: 50%;
     top: 45%;
     transform: translate(-50%);
-
     width: 280px;
 }
 
-/* zero */
+/* 제로 영역 대형 텍스트 */
 #section04 .zero-area {
     position: relative;
 }
@@ -563,28 +472,19 @@
     position: relative;
     width: 100%;
     min-height: 600px;
-
     margin-bottom: 150px;
     font-family: "LutskSity";
-
-    /* border: 5px dashed #fff; */
 }
 
 #section04 .display-large .layer {
     position: absolute;
     top: 60px;
     left: 50%;
-    transform: translateY(-50%);
-
     width: 100%;
-
-
     letter-spacing: -2vw;
     line-height: .65;
-    text-indent: 0%;
     text-align: center;
     white-space: nowrap;
-
     color: rgb(111 141 181);
     background-color: #000;
     overflow: hidden;
@@ -608,6 +508,7 @@
     z-index: 1;
 }
 
+/* 제로 영역 배경 및 타이틀 */
 #section04 .inner {
     position: relative;
     width: 100%;
@@ -617,14 +518,10 @@
     position: absolute;
     inset: 0;
     z-index: 0;
-
     display: flex;
     flex-direction: column;
     gap: 300px;
-
     padding: 30px;
-
-    /* border: 4px dotted yellow; */
 }
 
 #section04 .bg-flexitem .flex-row {
@@ -634,12 +531,10 @@
 
 .zero-title {
     position: relative;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     text-align: center;
     padding-bottom: 200px;
 }
@@ -649,7 +544,6 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 80px;
-    /* border: 5px solid blue; */
 }
 
 .zero-title .zero-txt img {
@@ -667,14 +561,13 @@
     font-size: 20px;
 }
 
+/* 제로 영역 3D 카드 */
 .zero-card {
     display: flex;
     justify-content: center;
     align-items: center;
-
     width: 350px;
     aspect-ratio: 336 / 467;
-
     transform-style: preserve-3d;
     perspective: 1200px;
 }
@@ -684,10 +577,8 @@
 .zero-card .right {
     position: absolute;
     inset: 0;
-
     width: 100%;
     height: 100%;
-
     transform-style: preserve-3d;
     transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -705,10 +596,8 @@
 .zero-card .card-box_back {
     position: absolute;
     inset: 0;
-
     width: 100%;
     height: 100%;
-
     backface-visibility: hidden;
     transform-style: preserve-3d;
     user-select: none;
@@ -728,10 +617,9 @@
     object-fit: contain;
 }
 
+/* 브랜드 파트너십 영역 */
 .champion-brand_title {
     text-align: center;
-
-    /* border: 1px solid red; */
 }
 
 .overflow_wrap {
@@ -742,7 +630,6 @@
     font-family: "Nastup";
     font-size: 80px;
     color: rgb(111 141 181);
-
     display: inline-block;
     transform: translateY(100%);
     opacity: 0;
@@ -753,7 +640,6 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
-
     margin-top: 100px;
 }
 
@@ -771,15 +657,12 @@
     width: 100%;
 }
 
-/* 카드 스크롤 효과 */
-/* ? Circular Scroll Showcase */
-
+/* 원형 스크롤 쇼케이스 */
 .wheel-sect {
     position: relative;
     width: 100%;
     height: 40rem;
     margin-bottom: 120px;
-
     overflow: hidden;
 }
 
@@ -794,11 +677,9 @@
     top: 200px;
     width: 2100px;
     height: 2100px;
-
     max-width: 3000px;
     max-height: 3000px;
     margin-left: -1050px;
-
     transform-origin: center center;
     border-radius: 50%;
 }

@@ -1,4 +1,4 @@
-/* font */
+/* 폰트 및 외부 리소스 */
 @import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
 
 @font-face {
@@ -17,6 +17,7 @@
     font-display: swap;
 }
 
+/* 폰트 유틸리티 클래스 */
 .font-archivo {
     font-family: "Archivo Black", sans-serif;
 }
@@ -30,11 +31,12 @@
     font-family: "Nastup";
 }
 
+/* 레이아웃 및 공통 유틸리티 */
 body {
     min-width: 1340px;
-    /* border: 10px solid red; */
 }
 
+/* 스크롤 방지*/
 .no-scroll {
     overflow: hidden !important;
     position: fixed !important;
@@ -44,6 +46,7 @@ body {
     touch-action: none !important;
 }
 
+/* 스크린 리더용 숨김 처리 */
 .blind {
     position: absolute;
     width: 1px;
@@ -57,32 +60,37 @@ body {
     text-transform: uppercase;
 }
 
-/* 카드 */
+/* 카드 그리드 레이아웃 */
 .card-grid_list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px 20px;
-
     perspective: 1200px;
     transform-style: preserve-3d;
     transform-origin: top center;
-    /* 스크롤 애니메이션의 기준 */
 }
 
 .grid-card_item {
     position: relative;
     color: #000;
-
     aspect-ratio: 336 / 467;
     perspective: 1200px;
 }
 
+/* 그리드 예외 위치 설정 */
+.grid-card_item:nth-child(13) {
+    grid-column: 2;
+}
+
+.grid-card_item:last-child {
+    grid-column: 3;
+}
+
+/* 카드 내부 공통 구성 요소 */
 .card-label {
     display: block;
-
     font-size: 18px;
     font-weight: 600;
-
     border-top: 1px solid;
     padding: .5rem 0;
 }
@@ -93,8 +101,6 @@ body {
     justify-content: center;
     flex-grow: 1;
     width: 100%;
-
-    /* border: 1px solid #000; */
 }
 
 .impact-wrap {
@@ -104,16 +110,6 @@ body {
     margin-bottom: 30px;
 }
 
-.img-front_wrap {
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 16px;
-    overflow: hidden;
-}
-
-.img-front_wrap img {
-    width: 100%;
-}
-
 .card-separator {
     background: currentColor;
     height: .1rem;
@@ -121,21 +117,34 @@ body {
     opacity: .3;
 }
 
-.card-main .impact-wrap .right {
-    font-size: 30px;
-    font-weight: 600;
+/* 이미지 컨테이너 공통 */
+.img-front_wrap,
+.grid-card_back .img-back-wrap {
+    width: 40%;
+    border-radius: 16px;
+    overflow: hidden;
 }
 
-.card-main .desc {
+.img-front_wrap {
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.img-front_wrap img,
+.grid-card_back .img-back-wrap img,
+.grid-card_front img {
+    width: 100%;
+    height: 100%;
+}
+
+/* 카드 설명 영역 (Desc) */
+.card-main .desc,
+.card-main .desc .title {
     font-size: 18px;
     font-weight: 600;
 }
 
 .card-main .desc .title {
     display: block;
-
-    font-size: 18px;
-    font-weight: 600;
     margin-bottom: 10px;
 }
 
@@ -144,27 +153,27 @@ body {
     justify-content: space-between;
 }
 
-
 .card-main .desc .way {
     display: block;
-
     font-size: 14px;
     color: #929292;
 }
 
 .card-main .desc .price {
     display: block;
-
     font-size: 16px;
     font-weight: 500;
 }
 
+.card-main .impact-wrap .right {
+    font-size: 30px;
+    font-weight: 600;
+}
 
+/* 카드 하단 (Footer) */
 .card-footer {
     display: flex;
     justify-content: space-between;
-
-    /* border: 1px solid #000; */
 }
 
 .card-footer .text {
@@ -176,25 +185,23 @@ body {
     font-size: 34px;
 }
 
+/* 카드 앞/뒷면 뒤집기 애니메이션 */
 .grid-card_front,
 .grid-card_back {
     position: absolute;
     inset: 0;
-
     display: flex;
     flex-direction: column;
-
     width: 100%;
     aspect-ratio: 336 / 467;
     padding: 25px;
-
     backface-visibility: hidden;
     transform-style: preserve-3d;
-
     transition: transform 0.3s ease-out;
     transform-origin: top;
 }
 
+/* 앞면 상태 */
 .grid-card_front {
     transform: rotateX(-25deg) rotateY(0deg);
     background-color: rgb(255, 255, 255);
@@ -204,23 +211,13 @@ body {
     transform: rotateX(0deg) rotateY(0deg);
 }
 
-.img-front_wrap {
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 16px;
-    width: 40%;
-    overflow: hidden;
-}
-
-.grid-card_front img {
-    width: 100%;
-    height: 100%;
-}
-
+/* 뒷면 상태 */
 .grid-card_back {
     transform: rotateX(-25deg) rotateY(180deg);
     overflow: hidden;
 }
 
+/* 호버 시 회전 동작 */
 .grid-card_item:hover .grid-card_front {
     transform: rotateX(0deg) rotateY(-180deg);
 }
@@ -229,8 +226,50 @@ body {
     transform: rotateX(0deg) rotateY(0deg);
 }
 
+/* 카드 뒷면 전용 스타일 (Marquee) */
+.grid-card_back .back-tf_txt {
+    display: flex;
+    gap: 40px;
+    flex: 1;
+    align-items: center;
+    width: max-content;
+    white-space: nowrap;
+    animation: marquee 10s linear infinite;
+    will-change: transform;
+}
 
-/* bg */
+.grid-card_back .back-tf_txt span {
+    flex-shrink: 0;
+    font-size: 80px;
+    font-weight: 600;
+    color: #fff;
+    padding-right: 40px;
+}
+
+.grid-card_back .card-footer .text,
+.grid-card_back .card-footer .fa-solid {
+    color: #fff;
+}
+
+.grid-card_back .card-footer .fa-solid {
+    transition: transform 0.4s ease;
+}
+
+.grid-card_back .card-footer .fa-solid:hover {
+    transform: rotate(90deg);
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* 일반 배경색 */
 .bg01 {
     background-color: #C5AE27;
 }
@@ -287,7 +326,7 @@ body {
     background-color: #015270;
 }
 
-/* w-bg */
+/* 대체 배경색 (W-BG) */
 .w-bg01 {
     background-color: #128C50;
 }
@@ -342,72 +381,4 @@ body {
 
 .w-bg14 {
     background-color: #161616;
-}
-
-.grid-card_back .img-back-wrap {
-    width: 40%;
-}
-
-.grid-card_back .img-back-wrap img {
-    width: 100%;
-    height: 100%;
-}
-
-.grid-card_back .back-tf_txt {
-    display: flex;
-    gap: 40px;
-    flex: 1;
-    align-items: center;
-
-    width: max-content;
-    white-space: nowrap;
-
-    animation: marquee 10s linear infinite;
-    will-change: transform;
-
-    /* border: 1px solid #000; */
-}
-
-@keyframes marquee {
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(-50%);
-    }
-}
-
-.grid-card_back .back-tf_txt span {
-    flex-shrink: 0;
-
-    font-size: 80px;
-    font-weight: 600;
-
-    color: #fff;
-    padding-right: 40px;
-}
-
-.grid-card_back .card-footer .text {
-    color: #fff;
-}
-
-.grid-card_back .card-footer .fa-solid {
-    color: #fff;
-}
-
-.grid-card_back .card-footer .fa-solid {
-    transition: transform 0.4s ease;
-}
-
-.grid-card_back .card-footer .fa-solid:hover {
-    transform: rotate(90deg);
-}
-
-.grid-card_item:nth-child(13) {
-    grid-column: 2;
-}
-
-.grid-card_item:last-child {
-    grid-column: 3;
 }
